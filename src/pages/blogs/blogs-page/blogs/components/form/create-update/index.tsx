@@ -1,24 +1,34 @@
 import { Button, Form, Input } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateBlog } from "../../../../../api/blog";
+import { updateBlog, createBlog } from "../../../../../api/blog"; 
 
 const { Item } = Form;
 
 type InitialValues = { title_en: string; description_en: string };
 
 const BlogsCreateUpdateForm: React.FC<{
-  // submitCallbackFn: any,
   initialValues?: InitialValues;
-}> = ({ initialValues }) => {
+  onSubmitSuccess?: () => void; 
+}> = ({ initialValues, onSubmitSuccess }) => {
   const { id } = useParams();
   const [form] = useForm<InitialValues>();
   const navigate = useNavigate();
 
-  const handleSubmit = (values: { title_en: string; description_en: string }) => {
-    updateBlog(id as string, values);
+  const handleSubmit = async (values: InitialValues) => {
+    try {
+      if (id) {
+        await updateBlog(id as string, values);
+      } else {
+        await createBlog(values);
+      }
 
-    navigate("/admin-page/blog");
+      onSubmitSuccess?.();
+
+      navigate("/admin-page/blog");
+    } catch (error) {
+      console.error("Failed to submit the blog form:", error.message);
+    }
   };
 
   return (
@@ -28,15 +38,15 @@ const BlogsCreateUpdateForm: React.FC<{
       onFinish={handleSubmit}
       style={{ maxWidth: 600 }}
     >
-      <Item label="Title" name="title" rules={[{ required: true }]}>
+      <Item label="Title" name="title_en" rules={[{ required: true }]}>
         <Input placeholder="Enter title" />
       </Item>
 
-      <Item label="Description" name="description" rules={[{ required: true }]}>
-        <Input placeholder="Enter description" />
+      <Item label="Description" name="description_en" rules={[{ required: true }]}>
+        <Input.TextArea placeholder="Enter description" />
       </Item>
 
-      <Item label=" ">
+      <Item>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
@@ -46,3 +56,4 @@ const BlogsCreateUpdateForm: React.FC<{
 };
 
 export default BlogsCreateUpdateForm;
+

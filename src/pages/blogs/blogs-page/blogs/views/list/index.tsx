@@ -22,8 +22,10 @@ const BlogsListView = () => {
         id: blog.id.toString(), 
       }));
 
-      setBlogs((prev) => [...prev, ...mappedBlogs]); 
+      setBlogs(() => [...mappedBlogs]); 
       console.log(mappedBlogs);
+      
+      
     });
   }, []);
 

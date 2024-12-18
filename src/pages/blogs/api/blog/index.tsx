@@ -1,4 +1,4 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+// import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../../../../supabase";
 
 export type SingleBlog = {
@@ -53,6 +53,18 @@ export const updateBlog = async (
   
     if (error) {
       throw error; 
+    }
+  };
+  
+  export const createBlog = async (
+    payload: { title_en: string; description_en: string }
+  ): Promise<void> => {
+    const { error } = await supabase
+      .from("blogs")
+      .insert([payload]);
+  
+    if (error) {
+      throw error;
     }
   };
   

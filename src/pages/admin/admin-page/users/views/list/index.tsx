@@ -13,7 +13,7 @@ const UsersListView = () => {
       lastSignIn: string;
       id: string;
     }[]
-  >([
+    >([
     {
       email: "johntsaava@gmail.com",
       createdAt: "2024-12-09T15:41:44.976105Z",
@@ -22,13 +22,14 @@ const UsersListView = () => {
       id: "raghac id",
     },
   ]);
+;
 
   useEffect(() => {
     getUsersListInAdmin().then((users) => {
       const mappedUsers = mapUsersListForAdmin(users);
 
-      setUsers((prev) => {
-        return [...prev, ...mappedUsers];
+      setUsers(() => {
+        return [ ...mappedUsers];
       });
     });
   }, []);
