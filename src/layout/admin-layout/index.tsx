@@ -16,6 +16,20 @@ const items2: MenuProps["items"] = [
     ],
   },
 ];
+const items3: MenuProps["items"] = [
+  {
+    key: `blogs`,
+    label: `Blogs`,
+
+    children: [
+      {
+        key: 0,
+        label: <Link to="blog">Blogs</Link>,
+      },
+    ],
+  },
+];
+const combinedMenuItems: MenuProps["items"] = [...items2, ...items3];
 
 const AdminLayout = () => {
   const {
@@ -41,7 +55,8 @@ const AdminLayout = () => {
               defaultSelectedKeys={["1"]}
               defaultOpenKeys={["sub1"]}
               style={{ height: "100%" }}
-              items={items2}
+              items={combinedMenuItems}
+              
             />
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: "80vh" }}>

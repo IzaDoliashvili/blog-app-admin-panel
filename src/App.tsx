@@ -13,6 +13,9 @@ import UsersListView from './pages/admin/admin-page/users/views/list';
 import UsersCreateView from './pages/admin/admin-page/users/views/create';
 import UsersUpdateView from './pages/admin/admin-page/users/views/update';
 import DashboardLayout from './layout/default';
+import BlogsCreateView from './pages/blogs/blogs-page/blogs/views/create';
+import BlogsUpdateView from './pages/blogs/blogs-page/blogs/views/update';
+import BlogsListView from './pages/blogs/blogs-page/blogs/views/list';
 
 const queryClient = new QueryClient();
 
@@ -51,6 +54,10 @@ export const App: React.FC = () => {
               <Route path="admin" element={<UsersListView />} />
               <Route path="admin/create" element={<UsersCreateView />} />
               <Route path="admin/update/:id" element={<UsersUpdateView />} />
+              <Route path="blog" element={<BlogsListView />} />
+              <Route path="blog/create" element={<BlogsCreateView />} />
+              <Route path="blog/update/:id" element={<BlogsUpdateView />} />
+
             </Route>
    
  </Routes>
