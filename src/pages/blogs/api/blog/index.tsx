@@ -1,7 +1,7 @@
-// import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+
 import { supabase } from "../../../../supabase";
 
-export type SingleBlog = {
+export type Blog = {
     id: number; 
     created_at: string; 
     title_en: string | null; 
@@ -19,7 +19,7 @@ export const getBlogList = async () => {
       .select("*")
       .throwOnError();
 
-    return data as SingleBlog[];
+    return data as Blog[];
   } catch (error) {
     console.error("Error fetching blog list:", error);
     throw error;
@@ -35,7 +35,7 @@ export const getSingleBlog = async (id: string) => {
       .single()
       .throwOnError();
 
-    return data as SingleBlog;
+    return data as Blog;
   } catch (error) {
     console.error(`Error fetching blog with ID ${id}:`, error);
     throw error;

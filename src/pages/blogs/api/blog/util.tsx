@@ -1,8 +1,8 @@
-import { SingleBlog } from "./index";
+import { Blog } from "./index";
 
 
 
-export const mapBlogsList = (blogs: SingleBlog[]) => {
+export const mapBlogsList = (blogs: Blog[]) => {
   return blogs?.map((blog) => ({
     title_en: blog?.title_en,
     title_ka: blog?.title_ka,

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { EditOutlined, PlusOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import BlogsCreateUpdateForm from "../form/create-update";
+import { ADMIN_PATHS } from "../../../../../../routes/admin/index.enum";
 
 
 const { Column } = Table;
